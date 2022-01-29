@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.ViewModles.RegisterViewModel
+
+@if (Model.IsAdmin )
+{
+    <h1 class="text-center"> Add new User </h1>
+}
+else
+{
+    <h1 class="text-center">Register</h1>
+}
+
+<div class="text-center">
+    <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            @Html.HiddenFor(x=>x.IsAdmin)
+            <div class=" m-2">
+                @Html.LabelFor(x => x.Email, null, new { @class = "mr-5" })
+                @Html.TextBoxFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div class="  m-2">
+                @Html.LabelFor(x => x.Year, null, new { @class = "mr-5" })
+                @Html.TextBoxFor(x => x.Year)
+                @Html.ValidationMessageFor(x => x.Year)
+            </div>
+            <div class=" m-2">
+                @Html.LabelFor(x => x.Password, null, new { @class = "mr-3" })
+                @Html.PasswordFor(x => x.Password)
+                @Html.ValidationMessageFor(x => x.Password)
+            </div>
+            <div class=" m-2">
+                @Html.LabelFor(x => x.ConfirmPassword, null, new { @class = "mr-1" })
+                @Html.PasswordFor(x => x.ConfirmPassword)
+                @Html.ValidationMessageFor(x => x.ConfirmPassword)
+            </div>
+            <input type="submit" value="Register" class="btn btn-info m-2 w-25" />
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Models.Bicycle
+<br />
+<h1 class="m-2 text-center">Fill all fields !</h1>
+
+    <div class="d-flex justify-content-center">
+        <form class="card m-3 border border-danger align-self-center" style="width: 30rem;" method="post">
+            @Html.HiddenFor(x => x.BicycleId)
+            @Html.ValidationSummary()
+            <div class="card-body row">
+                @*<label class="col-3 ">ImgUrl:</label>*@
+                @Html.LabelFor(x => x.ImgUrl, "Картинка", new { @class = "col-3" })
+                <div class="col-1"></div>
+                @*<input class="col-6 " type="text" name="ImGUrl" value="" />*@
+                @Html.TextBoxFor(x => x.ImgUrl, null, new { @class = "col-6" })
+            </div>
+            <div class="card-body row">
+                @Html.LabelFor(x => x.Model, null, new { @class = "col-3" })
+                <div class="col-1"></div>
+                @Html.TextBoxFor(x => x.Model, null, new { @class = "col-6" })
+            </div>
+            <div class="card-body row">
+                @Html.LabelFor(x => x.Country, null, new { @class = "col-3" })
+                <div class="col-1"></div>
+                @Html.TextBoxFor(x => x.Country, null, new { @class = "col-6" })
+            </div>
+            <div class="card-body row">
+                @Html.LabelFor(x => x.Color, null, new { @class = "col-3" })
+                <div class="col-1"></div>
+                @Html.TextBoxFor(x => x.Color, null, new { @class = "col-6" })
+            </div>
+            <div class="card-body row">
+                @Html.LabelFor(x => x.Weight, null, new { @class = "col-3" })
+                <div class="col-1"></div>
+                @Html.TextBoxFor(x => x.Weight, null, new { @class = "col-6" })
+            </div>
+            <div class="card-body row">
+                @Html.LabelFor(x => x.Price, null, new { @class = "col-3" })
+                <div class="col-1"></div>
+                @Html.TextBoxFor(x => x.Price, null, new { @class = "col-6" })
+                @*@Html.ValidationMessageFor(x=>x.Price)*@
+            </div>
+
+            <div class="card-body">
+                <input type="submit" class="btn btn-danger" style="width:50%; text-align:center" value="Save" />
+            </div>
+        </form>
+
+    </div>

@@ -1,0 +1,16 @@
+﻿@model WebApplication1.Models.ViewModles.ChangeRoleViewModel
+
+<h1>Change roles for @Model.UserEmail</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <div class="form-group">
+        @foreach (var role in Model.AllRoles)
+        {
+            <input class="m-2" type="checkbox" name="roles" value="@role.Name"
+                   @(Model.UserRoles.Contains(role.Name) ? "checked='checked'" : "") /> <span @(Model.UserRoles.Contains(role.Name) ? "style=color:green" : "")>@role.Name</span> <br>
+            }
+    </div>
+    <input type="submit" class="btn btn-warning" value="Save" />
+    <a asp-action="ChangePasswordAdmin" asp-route-id="@Model.UserId" asp-controller="Account" class="btn btn-primary">Change Password for this User</a>
+</form>

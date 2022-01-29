@@ -1,0 +1,34 @@
+﻿
+@model WebApplication1.Models.Order
+
+<div class="">
+    <h3 class="text-center">Order</h3>
+    @*@Html.ValidationSummary()*@
+    <form action="Buy" method="post" class="m-2 p-2">
+        <div class="row m-2 p-1">
+            <input type="hidden" name="BicycleId" value="@ViewBag.BicycleId" />
+            <input type="hidden" name="ImgUrl" value="@ViewBag.ImgUrl" />
+        </div>
+        <div class="row m-2 p-1">
+            @Html.LabelFor(x=>x.UserName,null,new {@class="col-2" })
+            @Html.TextBoxFor(x=>x.UserName,null,new { @class="col-5"})
+            @Html.ValidationMessageFor(x=>x.UserName)
+        </div>
+        <div class="row m-2 p-1">
+            @Html.LabelFor(x => x.Phone, null, new { @class = "col-2" })
+            @Html.TextBoxFor(x => x.Phone, null, new { @class = "col-5" })
+            @Html.ValidationMessageFor(x => x.Phone)
+        </div>
+        <div class="row m-2 p-1">
+            <label class="col-2" for="Moment">Moment:</label>
+            <input class="col-5" type="datetime" name="Date" value="@DateTime.Now" />
+        </div>
+        <div class="row m-2 mt-3 p-1">
+            <input type="submit" class="btn btn-dark col-2" value="Order" />
+        </div>
+
+    </form>
+    <div class="text-center mt-3">
+        <img src="@ViewBag.ImgUrl" class="rounded" alt="...">
+    </div>
+</div>

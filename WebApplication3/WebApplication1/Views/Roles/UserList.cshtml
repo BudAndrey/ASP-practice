@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebApplication1.Models.User>
+
+<h1 class="text-center">User List</h1>
+<table class="table">
+    @foreach (var user in Model)
+    {
+    <tr>
+        <td>@user.Email</td>
+        <td>
+            <a asp-action="Edit" asp-route-userId="@user.Id" class="btn btn-light">Edit</a>
+        </td>
+        <td>
+            @if (user.Email == User.Identity.Name)
+                {
+                    <a href="#" disabled="disabled" class="btn btn-secondary">Delete</a>
+                }
+                else
+                {
+                     <a asp-action="DeleteUser" asp-route-userId="@user.Id" class="btn btn-danger">Delete</a>
+                }       
+           </td>
+    </tr>
+    }
+
+</table>
+
+<a asp-action="Register" asp-route-id="admin" asp-controller="Account" class="btn btn-primary">Create new User</a>
+<a asp-action="Index" class="btn btn-info">Edit Roles</a>

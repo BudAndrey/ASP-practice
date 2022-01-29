@@ -1,0 +1,84 @@
+﻿@*@model WebApplication1.Models.Cart*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Test</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand active" asp-area="" asp-controller="Home" asp-route-id="0" asp-action="Index">BicycleShop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-route-id="0" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item font-weight-bold text-warning">
+                                <a class="btn btn-secondary" asp-route-name="@User.Identity.Name" asp-action="ChangePassword" asp-controller="Account">Change Password</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item font-weight-bold text-warning">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="UserList">Users</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div>
+                    <span>Welcome @User.Identity.Name</span>
+                    <a class="btn btn-warning mr-2" asp-action="Logout" asp-controller="Account">Logout</a>
+                </div>
+            }
+            <a class="navbar-brand " asp-area="" asp-route-returnurl="/Home/Index" asp-controller="Cart" asp-action="Index">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
+                @*<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                @( )
+            </span>*@
+            </a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div>
+                    <a class="btn btn-success m-1" asp-action="Register" asp-controller="Account">Register</a>
+                    <a class="btn btn-info m-1" asp-action="Login" asp-controller="Account">Login</a>
+                </div>
+            }
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Test - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

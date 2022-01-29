@@ -1,0 +1,59 @@
+﻿@model List<WebApplication1.Models.User>
+
+<h1>All registred users and their roles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th></th>
+            <th>Role</th>
+            <th></th>
+            <th>Is Admin</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td></td>
+                @*<td>@user.Role.Name</td>*@
+                <td></td>
+                <td>
+                    <form action="EditUsers" method="post">
+                        @*@if (user.Role.Name == "admin")*@
+                        @*{
+                            @if (user.Email == User.Identity.Name)
+                            {
+                                <input type="hidden" name="UserId" value="@user.UserId" />
+                                <input type="checkbox" checked="checked" name="chkbox" disabled="disabled" />
+                                <input type="submit" value="Save" class="btn btn-danger ml-2" disabled="disabled" />
+                            }*@
+                            <!--else
+                            {
+                                <input type="hidden" name="UserId" value="@user.Id" />-->
+                                @*@Html.Hidden("UserId", user.UserId)*@
+                                <!--<input type="checkbox" checked="checked" name="chkbox" />-->
+                                @*@Html.CheckBox("admin", true, new { name = "chkbox" })*@
+                                <!--<input type="submit" value="Save" class="btn btn-danger ml-2" />
+                            }-->
+
+                        @*}
+                        else
+                        {*@
+                            <input type="hidden" name="UserId" value="@user.Id" />
+                            @*@Html.Hidden("UserId", user.UserId)*@
+                            <input type="checkbox" name="chkbox" />
+                            @*@Html.CheckBox("admin", new { name = "chkbox" })*@
+                            <input type="submit" value="Save" class="btn btn-danger ml-2" />
+                        @*}*@
+
+                    </form>
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

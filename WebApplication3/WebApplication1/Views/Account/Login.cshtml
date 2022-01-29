@@ -1,0 +1,30 @@
+﻿@model WebApplication1.Models.ViewModles.LoginViewModel
+
+<h1 class="text-center">Login</h1>    
+
+<div class="text-center">
+<a asp-controller="Account" asp-action="Register" class="btn btn-dark m-4 w-25">Register</a>
+<form asp-action="Login" asp-controller="Account" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="">
+        @Html.HiddenFor(x=>x.ReturnUrl)
+        <div class=" m-2">
+            @Html.LabelFor(x => x.Email, null, new { @class = "mr-5" })
+            @Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <div class=" m-2">
+            @Html.LabelFor(x => x.Password, null, new { @class = "mr-3" })
+            @Html.PasswordFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <div class=" m-2">
+            @Html.LabelFor(x => x.RememberMe, null, new { @class = "mr-3" })
+            @Html.CheckBoxFor(x => x.RememberMe)
+            @Html.ValidationMessageFor(x => x.RememberMe)
+        </div>
+        <input type="submit" value="Login" class="btn btn-info m-2 w-25" />
+    </div>
+    
+</form> 
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication1.Models.Bicycle>
+
+<h1 class="text-center">Crud Operations</h1>
+<div class="row m-3">
+    <div class="col-3"></div>
+    <a class="col-6 btn btn-outline-info w-25 bg-light rounded-1" asp-controller="Admin" asp-action="Create">Create</a>
+    <div class="col-3"></div>
+</div>
+<div class="d-flex flex-wrap justify-content-around">
+
+
+    @foreach (var item in Model)
+        {
+            
+        <div class="card m-2 border border-danger" style="width: 20rem; ">
+            <img src="@item.ImgUrl" class="card-img-top" style="height:40%;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@item.Model</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Country: @item.Country</li>
+                <li class="list-group-item">Color: @item.Color</li>
+                <li class="list-group-item">Weight: @item.Weight</li>
+                <li class="list-group-item"><b>Price: </b><b>@item.Price</b> UAH</li>
+            </ul>
+            <div class="card-body d-flex justify-content-between">
+                <a href="~/Admin/Create/@item.BicycleId" class="btn btn-warning" style="width:30%;height:fit-content">Edit</a>
+                <form action="~/Admin/Delete" method="post">
+                    <input type="hidden" name="BicycleId" value="@item.BicycleId" />
+                    <input type="submit" class="btn btn-danger"  value="Delete" />
+                </form>
+            </div>
+        </div>
+    }
+</div>

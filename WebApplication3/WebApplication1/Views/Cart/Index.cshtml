@@ -1,0 +1,44 @@
+﻿@model WebApplication1.Models.ViewModles.CartIndexViewModel
+
+    <h1>Cart</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th></th>  
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Cart.Lines)
+            {
+            <tr>
+                <td>@item.Quantity</td>
+                <td>@item.Bicycle.Model</td>
+                <td>@item.Bicycle.Color</td>
+                <td>@item.Bicycle.Price</td>
+                <td>@(item.Quantity*item.Bicycle.Price)</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        <input type="hidden" value="@item.Bicycle.BicycleId" name="bikeId" />
+                        @Html.Hidden("returnUrl", Context.Request.Path)
+                        <input type="submit" class="btn btn-danger" value="Remove" />
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-primary">Total:</td>
+                <td><b>@Model.Cart.ComputeTotalValue()</b></td>
+                <td>UAH</td>
+            </tr>  
+        </tfoot>
+    </table>
+
+    <a href="@Model.ReturnUrl" class="btn active btn-dark">Continue shoping</a>
